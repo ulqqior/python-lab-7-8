@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ book.title }} — Деталі книги</title>
+</head>
+<body>
+    <h1>{{ book.title }}</h1>
+    <p><strong>Автор:</strong> {{ book.author }}</p>
+    <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+    <p><strong>Рік видання:</strong> {{ book.published_year }}</p>
+    <p><strong>Кількість сторінок:</strong> {{ book.pages }}</p>
+    <p><strong>Ціна:</strong> {{ book.price }} грн</p>
+    <p><strong>Статус:</strong> {{ book.get_status_display }}</p>
+    <p><strong>Жанри:</strong>
+        {% for genre in book.genres.all %}
+            <span>{{ genre.name }}</span>{% if not forloop.last %}, {% endif %}
+        {% empty %}
+            Не вказано
+        {% endfor %}
+    </p>
+</body>
+</html>

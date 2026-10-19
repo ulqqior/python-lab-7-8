@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог книг — Онлайн-бібліотека</title>
+</head>
+<body>
+    <h1>Каталог книг онлайн-бібліотеки</h1>
+    <ul id="book-list">
+        {% for book in books %}
+            <li class="book-item">
+                <a href="{% url 'catalog:book_detail' book.pk %}">{{ book.title }}</a>
+                — <strong>{{ book.author }}</strong>
+                (ISBN: {{ book.isbn }}, статус: {{ book.get_status_display }}, ціна: {{ book.price }} грн)
+            </li>
+        {% empty %}
+            <li class="empty-msg">У каталозі поки немає книг.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
